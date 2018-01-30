@@ -1,0 +1,10 @@
+a.navbar-item {
+    font-size: 30px;
+    font-weight: 900;
+    color: #eee;
+    &:hover {
+        background-color: transparent !important;
+        color: inherit !important;
+        transition: all .3s;
+    }
+}

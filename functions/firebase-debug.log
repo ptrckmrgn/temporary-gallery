@@ -1,0 +1,26 @@
+[debug] [2018-01-30T09:59:04.770Z] ----------------------------------------------------------------------
+[debug] [2018-01-30T09:59:04.773Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-01-30T09:59:04.773Z] CLI Version:   3.17.4
+[debug] [2018-01-30T09:59:04.773Z] Platform:      darwin
+[debug] [2018-01-30T09:59:04.773Z] Node Version:  v6.11.4
+[debug] [2018-01-30T09:59:04.773Z] Time:          Tue Jan 30 2018 20:59:04 GMT+1100 (AEDT)
+[debug] [2018-01-30T09:59:04.774Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-01-30T09:59:04.791Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-01-30T09:59:04.791Z] > authorizing via signed-in user
+[debug] [2018-01-30T09:59:04.794Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-01-30T09:59:04.795Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/lGKM56nbkvgaMnDXN4BzrTsYPPhQkFHBZlAf3wlaqiI',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Tue Jan 30 2018 20:59:04 GMT+1100 (AEDT)
+[debug] [2018-01-30T09:59:05.386Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-30T09:59:05.394Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/temporary-gallery  
+  
+ Tue Jan 30 2018 20:59:05 GMT+1100 (AEDT)
+[debug] [2018-01-30T09:59:10.091Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-30T09:59:10.092Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/temporary-gallery/tokens  
+  
+ Tue Jan 30 2018 20:59:10 GMT+1100 (AEDT)
