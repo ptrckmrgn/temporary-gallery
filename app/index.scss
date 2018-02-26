@@ -1,4 +1,9 @@
 @import './sass/bulma';
 @import './node_modules/bulma/bulma';
-@import './sass/site';
+@import './sass/variables';
+
+@import './sass/app';
+@import './sass/welcome';
 @import './sass/typography';
+
+@import './sass/components/react-spinner';

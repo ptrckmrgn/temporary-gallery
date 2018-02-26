@@ -5,11 +5,10 @@ import 'firebase/firestore';
 import _ from 'lodash';
 import axios from 'axios';
 
+import Welcome from './Welcome';
+import Closed from './Closed'
+
 import Loader from '../components/Loader';
-import Navigation from '../components/Navigation';
-import Welcome from '../components/Welcome';
-import About from '../components/About';
-import Gallery from './Gallery';
 
 const config = {
     apiKey: "AIzaSyD_N34z3wk6qo3vrgKlSB7DH_-UR1Bl3qA",
@@ -42,19 +41,19 @@ class App extends Component {
         //         isLoading: false
         //     });
         // });
-        const timestampRef = Firebase.firestore().collection('timestamp').doc('xw9Lf3HJpB9gYTZB5tKT');
-        timestampRef.update({
-            value: Firebase.firestore.FieldValue.serverTimestamp()
-        }).then(result => {
-            timestampRef.get().then(snapshot => {
-                const timestamp = Date.parse(snapshot.data().value);
-                const isOpen = _.floor(timestamp / 1000 / 60 % 2) == 0 ? true : false;
-                this.setState({
-                    isOpen,
-                    isLoading: false
-                });
-            });
-        });
+        // const timestampRef = Firebase.firestore().collection('timestamp').doc('xw9Lf3HJpB9gYTZB5tKT');
+        // timestampRef.update({
+        //     value: Firebase.firestore.FieldValue.serverTimestamp()
+        // }).then(result => {
+        //     timestampRef.get().then(snapshot => {
+        //         const timestamp = Date.parse(snapshot.data().value);
+        //         const isOpen = _.floor(timestamp / 1000 / 60 % 2) == 0 ? true : false;
+        //         this.setState({
+        //             isOpen,
+        //             isLoading: false
+        //         });
+        //     });
+        // });
     }
 
     render () {
@@ -63,7 +62,7 @@ class App extends Component {
                 <Welcome />
             );
         }
-        else if (this.state.isOpen) {
+        else if (! this.state.isOpen) {
             return (
                 <Closed />
             );

@@ -1,10 +1,10 @@
 import React from 'react';
 import {PulseLoader} from 'react-spinners';
 
-const Loader = () => {
+const Loader = (props) => {
     return (
-        <div className='has-text-centered'>
-            <PulseLoader size={12} margin='12px' color='#333' loading={true} />
+        <div className='react-spinner'>
+            <PulseLoader size={10} margin='6px' loading={true} />
         </div>
     );
 }

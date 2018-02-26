@@ -1,13 +1,13 @@
 import React from 'react';
-import Logo from './Logo';
-import Loader from './Loader';
+
+import Loader from '../components/Loader';
 
 const About = () => {
     return (
         <div id="welcome">
             <div>
-                <h1><Logo /></h1>
-                <Loader />
+                <h1>IAGO</h1>
+                <Loader color="#ddd" />
             </div>
         </div>
     );
