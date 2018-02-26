@@ -1,9 +1,12 @@
 @import './sass/bulma';
 @import './node_modules/bulma/bulma';
 @import './sass/variables';
-
-@import './sass/app';
-@import './sass/welcome';
 @import './sass/typography';
 
-@import './sass/components/react-spinner';
+// PAGES
+@import './sass/partials/app';
+@import './sass/partials/welcome';
+@import './sass/partials/closed';
+
+// COMPONENTS
+@import './sass/partials/react-spinner';

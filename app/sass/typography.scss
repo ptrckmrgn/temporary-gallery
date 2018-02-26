@@ -4,6 +4,12 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+p {
+    font-size: 12px;
+    color: $dark-grey;
+    margin-bottom: 1em;
+}
+
 h1,
 h2,
 h3,
@@ -12,7 +18,8 @@ h5,
 h6 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    color: #333;
+    color: $dark-grey;
+    margin-bottom: 0.5em;
 }
 
 h1 {
