@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Img from '../components/Img';
 import Loader from '../components/Loader';
 
-class Photo extends Component {
+class Piece extends Component {
     constructor(props) {
         super(props);
 
@@ -49,4 +49,4 @@ class Photo extends Component {
     }
 }
 
-export default Photo;
+export default Piece;

@@ -63,19 +63,27 @@ class App extends Component {
                 <Welcome />
             );
         }
-        return (
-            <BrowserRouter>
-                <div>
-                    <Navigation />
-                    <div id="content">
-                        <Switch>
-                            <Route path='/about' component={About} />
-                            <Route path='/' render={props => (<Gallery {...props} Firebase={Firebase} isOpen={this.state.isOpen} />)} />
-                        </Switch>
+        else if (this.state.isOpen) {
+            return (
+                <Closed />
+            );
+        }
+        else {
+            return (
+                <BrowserRouter>
+                    <div>
+                        <Navigation />
+                        <div id="content">
+                            <Switch>
+                                <Route path='/about' component={About} />
+                                <Route path='/purchase' component={Purchase} />
+                                <Route path='/' render={props => (<Gallery {...props} Firebase={Firebase} isOpen={this.state.isOpen} />)} />
+                            </Switch>
+                        </div>
                     </div>
-                </div>
-            </BrowserRouter>
-        );
+                </BrowserRouter>
+            );
+        }
     }
 }
 
