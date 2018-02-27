@@ -1,5 +1,6 @@
-@import './sass/bulma';
-@import './node_modules/bulma/bulma';
+// @import './sass/bulma';
+// @import './node_modules/bulma/bulma';
+@import '../node_modules/normalize.css/normalize.css';
 @import './sass/variables';
 @import './sass/typography';
 
@@ -7,6 +8,7 @@
 @import './sass/partials/app';
 @import './sass/partials/welcome';
 @import './sass/partials/closed';
+@import './sass/partials/gallery';
 
 // COMPONENTS
 @import './sass/partials/react-spinner';

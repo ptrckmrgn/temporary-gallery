@@ -12,7 +12,7 @@ class Closed extends Component {
 
     render() {
         return (
-            <div id="closed">
+            <div id="closed" className="page">
                 <div className="container">
                     <h1>IAGO</h1>
                     <h4>Sorry this website is closed.</h4>

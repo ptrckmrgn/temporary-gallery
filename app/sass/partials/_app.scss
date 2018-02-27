@@ -2,6 +2,35 @@
     background: url('/assets/background.jpg') repeat;
 }
 
-.container {
-    margin-bottom: 6rem;
+.page {
+    .container {
+        margin-bottom: 6rem;
+        text-align: center;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn {
+    font-size: 10px;
+    display: inline-block;
+    color: $dark-grey;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin: 4px;
+    &:hover {
+        color: $light-grey;
+    }
+    &.primary-btn {
+        font-size: 14px;
+        border: #ccc solid 1px;
+        &:hover {
+            color: inherit;
+            transition: all 0.4s;
+            background: rgba(0,0,0,0.04);
+        }
+    }
 }

@@ -6,7 +6,11 @@ import _ from 'lodash';
 import axios from 'axios';
 
 import Welcome from './Welcome';
-import Closed from './Closed'
+import Closed from './Closed';
+import Open from './Open';
+import Gallery from './Gallery';
+import About from './About';
+import Purchase from './Purchase';
 
 import Loader from '../components/Loader';
 
@@ -26,7 +30,7 @@ class App extends Component {
 
         this.state = {
             isLoading: false,
-            isOpen: false,
+            isOpen: true,
         };
     }
 
@@ -71,14 +75,15 @@ class App extends Component {
             return (
                 <BrowserRouter>
                     <div>
-                        <Navigation />
-                        <div id="content">
-                            <Switch>
-                                <Route path='/about' component={About} />
-                                <Route path='/purchase' component={Purchase} />
-                                <Route path='/' render={props => (<Gallery {...props} Firebase={Firebase} isOpen={this.state.isOpen} />)} />
-                            </Switch>
-                        </div>
+                        <Switch>
+                            <Route path='/gallery/:fullscreen' component={Gallery} />
+                            <Route path='/gallery' component={Gallery} />
+                            {/* render={props => (<Gallery {...props} Firebase={Firebase} isOpen={this.state.isOpen} />)} /> */}
+                            <Route path='/about' component={About} />
+                            <Route path='/purchase' component={Purchase} />
+                            <Route path='/' component={Open} />
+                        </Switch>
+                        {/* <Navigation /> */}
                     </div>
                 </BrowserRouter>
             );
