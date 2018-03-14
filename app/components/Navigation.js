@@ -1,25 +1,17 @@
 import React from 'react';
-import Logo from './Logo';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Navigation = () => {
-    const style = {
-        fontSize: '30px'
-    };
-
+const Navigation = (props) => {
     return (
-        <nav className="navbar" role="navigation" aria-label="main navigation">
-            {/* <div className="navbar-brand">
-                Emotional UT
-            </div> */}
-            <div className="navbar-menu">
-                <div className="navbar-start">
-                    <Link to="/" className="navbar-item"><Logo height='30px' /></Link>
-                </div>
-
-                <div className="navbar-end">
-                    <Link to="/about" className="navbar-item">About</Link>
-                </div>
+        <nav id="navigation" role="navigation" aria-label="main navigation">
+            <div className={`nav-brand ${props.navShown ? (props.active == 'home' ? 'active' : '') : ''}`}>
+                <Link to="/" onClick={props.isNavShown}>IAGO</Link>
+            </div>
+            <div className={`nav-item hide ${props.navShown ? 'show' : ''}`}>
+                <Link to="/about">About IAGO</Link>
+            </div>
+            <div className={`nav-item hide ${props.navShown ? 'show' : ''}`}>
+                <Link to="/purchase">Purchase Piece</Link>
             </div>
         </nav>
     );

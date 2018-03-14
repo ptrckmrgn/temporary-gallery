@@ -1,0 +1,39 @@
+#navigation {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    bottom: 5%;
+    left: 4%;
+    &:hover {
+        .nav-brand a {
+            color: $dark-grey;
+        }
+    }
+    a {
+        &:hover {
+            color: $dark-grey !important;
+        }
+    }
+    .nav-brand {
+        &.active a {
+            color: $dark-grey;
+        }
+        a {
+            color: $super-light-grey;
+            font-size: 8vh;
+            font-weight: 700;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+    }
+    .nav-item {
+        &.active a {
+            color: $dark-grey;
+        }
+        a {
+            color: $light-grey;
+            font-size: 3vh;
+            padding: 20px;
+        }
+    }
+}

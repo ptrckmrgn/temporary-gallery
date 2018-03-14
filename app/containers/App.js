@@ -7,7 +7,6 @@ import axios from 'axios';
 
 import Welcome from './Welcome';
 import Closed from './Closed';
-import Open from './Open';
 import Gallery from './Gallery';
 import About from './About';
 import Purchase from './Purchase';
@@ -78,10 +77,10 @@ class App extends Component {
                         <Switch>
                             <Route path='/gallery/:fullscreen' component={Gallery} />
                             <Route path='/gallery' component={Gallery} />
-                            {/* render={props => (<Gallery {...props} Firebase={Firebase} isOpen={this.state.isOpen} />)} /> */}
                             <Route path='/about' component={About} />
                             <Route path='/purchase' component={Purchase} />
-                            <Route path='/' component={Open} />
+                            <Route path='/' render={props => (<Gallery {...props} Firebase={Firebase} />)} />
+                            {/* <Route path='/' component={Open} /> */}
                         </Switch>
                         {/* <Navigation /> */}
                     </div>

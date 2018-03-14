@@ -1,95 +1,94 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-class Gallery extends Component {
+import GalleryIntro from '../components/Gallery/GalleryIntro';
+import Piece from '../components/Piece';
+import Loader from '../components/Loader';
+import Navigation from '../components/Navigation';
+
+class Open extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isLoading: true,
-            showIntro: true,
-            fullscreen: null,
-            imageURL: '',
-            dataURI: null
+            dataURI: null,
+            pieceLoaded: false,
+            introHidden: false,
+            navShown: false
         };
 
-        this.makeFullscreen = this.makeFullscreen.bind(this);
+        this.isIntroHidden = this.isIntroHidden.bind(this);
+        this.isPieceLoaded = this.isPieceLoaded.bind(this);
+        this.isNavShown = this.isNavShown.bind(this);
     }
-
-    // getDataURI(url, callback) {
-    //     const image = new Image();
-    //     image.setAttribute('crossOrigin', 'anonymous');
-    //
-    //     image.onload = function() {
-    //         var canvas = document.createElement('canvas');
-    //         canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
-    //         canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
-    //
-    //         canvas.getContext('2d').drawImage(this, 0, 0);
-    //
-    //         // Get raw image data
-    //         // callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
-    //
-    //         // ... or get as Data URI
-    //         callback(canvas.toDataURL('image/png'));
-    //     };
-    //
-    //     image.src = url;
-    // }
 
     componentDidMount() {
-        // const storage = this.props.Firebase.storage();
-        // const gsReference = storage.refFromURL('gs://temporary-gallery.appspot.com/testimg1.jpg');
-        // gsReference.getDownloadURL().then(imageURL => {
-        //     this.getDataURI(imageURL, dataURI => {
-        //         this.setState({dataURI});
-        //     });
-        // });
-
-        if (this.props.match.params.fullscreen == '1') {
-            this.setState({fullscreen: true});
-        }
+        const storage = this.props.Firebase.storage();
+        const gsReference = storage.refFromURL('gs://temporary-gallery.appspot.com/testimg4.png');
+        // TODO: storage permissions
+        gsReference.getDownloadURL().then(imageURL => {
+            this.getDataURI(imageURL, dataURI => {
+                this.setState({dataURI});
+            });
+        });
     }
 
-    makeFullscreen() {
+    getDataURI(url, callback) {
+        const image = new Image();
+        image.setAttribute('crossOrigin', 'anonymous');
 
-        this.viewGallery();
+        image.onload = function() {
+            var canvas = document.createElement('canvas');
+            canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+            canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+
+            canvas.getContext('2d').drawImage(this, 0, 0);
+
+            // Get raw image data
+            // callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
+
+            // ... or get as Data URI
+            callback(canvas.toDataURL('image/png'));
+        };
+
+        image.src = url;
     }
 
-    viewGallery() {
-        this.setState({showIntro: false});
+    isIntroHidden() {
+        this.setState({introHidden: true})
+    }
+
+    isPieceLoaded() {
+        this.setState({pieceLoaded: true});
+    }
+
+    isNavShown() {
+        this.setState({navShown: !this.state.navShown});
     }
 
     render() {
-        if (this.state.fullscreen) {
-            return(
-                <div className="page">
-                    FULLSCREEN!!!!
+        return (
+            <div id="gallery" className="page">
+                <GalleryIntro
+                    pieceLoaded={this.state.pieceLoaded}
+                    introHidden={this.state.introHidden}
+                    isIntroHidden={this.isIntroHidden}
+                />
+                <div id="gallery-piece" className={`hide ${this.state.introHidden ? 'show' : ''}`}>
+                    <Piece
+                        id="canvas"
+                        src={this.state.dataURI}
+                        isPieceLoaded={this.isPieceLoaded}
+                    />
+                    <Navigation
+                        navShown={this.state.navShown}
+                        isNavShown={this.isNavShown}
+                        active="home"
+                    />
                 </div>
-            );
-        }
-        else {
-            return(
-                <div>
-                    not fullscreen...
-                </div>
-            );
-        }
-
-        // if (false) {//this.state.isLoading) {
-        //     return (
-        //         <Loader />
-        //     );
-        // }
-        // else {
-        // return (
-        //     <div>
-        //         {/* <Img id="image" src={this.state.dataURI} /> */}
-        //         Working!!
-        //         {/* <Photo imageURL={this.state.imageURL} /> */}
-        //     </div>
-        // );
-        // }
+            </div>
+        );
     }
 }
 
-export default Gallery;
+export default Open;
