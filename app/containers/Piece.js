@@ -41,10 +41,10 @@ class Piece extends Component {
 
     render() {
         return (
-            <div>
+            <section>
                 <Img id="image" src={this.state.dataURI} />
                 {/* <img id="image" ref={(ref) => this.imgRef = ref} /> */}
-            </div>
+            </section>
         );
     }
 }

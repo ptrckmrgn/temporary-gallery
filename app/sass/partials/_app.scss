@@ -2,10 +2,20 @@
     background: url('/assets/background.jpg') repeat;
 }
 
-.page {
-    .container {
-        margin-bottom: 6rem;
-        text-align: center;
+.page-wrapper {
+    section {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &.has-navigation {
+        section {
+            height: calc(100vh - 140px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
 }
 

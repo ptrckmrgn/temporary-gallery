@@ -1,0 +1,27 @@
+#purchase {
+    .container {
+        width: 320px;
+    }
+    label {
+        color: $light-grey;
+        font-size: 10px;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    input, textarea {
+        border: 1px solid $super-light-grey;
+        outline-color: $light-grey;
+        outline-width: 3px;
+        margin-bottom: 16px;
+        width: 100%;
+    }
+
+    input {
+        height: 24px;
+    }
+
+    textarea {
+        resize: none;
+    }
+}

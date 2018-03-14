@@ -1,12 +1,10 @@
 #navigation {
-    position: absolute;
+    height: 140px;
     display: flex;
     align-items: center;
-    bottom: 5%;
-    left: 4%;
     &:hover {
         .nav-brand a {
-            color: $dark-grey;
+            // color: $dark-grey;
         }
     }
     a {
@@ -15,6 +13,7 @@
         }
     }
     .nav-brand {
+        margin-left: 40px;
         &.active a {
             color: $dark-grey;
         }

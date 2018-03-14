@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import Welcome from './Welcome';
 import Closed from './Closed';
+import Open from './Open';
 import Gallery from './Gallery';
 import About from './About';
 import Purchase from './Purchase';
@@ -28,12 +29,38 @@ class App extends Component {
         super(props);
 
         this.state = {
-            isLoading: false,
+            isLoading: true,
             isOpen: true,
+            imgURI: null,
+            data: null,
         };
     }
 
     componentDidMount() {
+        const img = 'gs://temporary-gallery.appspot.com/testimg4.png';
+        const data = 'zrTc2nOD3lJ5DYImVrq5';
+        const imgRef = Firebase.storage().refFromURL(img);
+        const dataRef = Firebase.firestore().collection('piece').doc(data);
+
+        // TODO: storage permissions
+        // TODO: hide data if closed
+        imgRef.getDownloadURL().then(imageURL => {
+            this.getDataURI(imageURL, imgURI => {
+                this.setState({
+                    imgURI,
+                    isLoading: false
+                });
+            });
+        });
+
+        dataRef.get().then(doc => {
+            this.setState({
+                data: doc.data()
+            });
+        }).catch(error => {
+            console.log("Error getting document:", error);
+        });
+
         // axios.get('/timestamp').then(response => {
         //     const timestamp = response.data;
         //     const isOpen = _.floor(timestamp / 1000 / 60 % 2) == 0 ? true : false;
@@ -44,6 +71,7 @@ class App extends Component {
         //         isLoading: false
         //     });
         // });
+
         // const timestampRef = Firebase.firestore().collection('timestamp').doc('xw9Lf3HJpB9gYTZB5tKT');
         // timestampRef.update({
         //     value: Firebase.firestore.FieldValue.serverTimestamp()
@@ -57,6 +85,25 @@ class App extends Component {
         //         });
         //     });
         // });
+    }
+
+    getDataURI(url, callback) {
+        const image = new Image();
+        image.setAttribute('crossOrigin', 'anonymous');
+        image.onload = function() {
+            var canvas = document.createElement('canvas');
+            canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+            canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+
+            canvas.getContext('2d').drawImage(this, 0, 0);
+
+            // Get raw image data
+            // callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
+
+            // ... or get as Data URI
+            callback(canvas.toDataURL('image/png'));
+        };
+        image.src = url;
     }
 
     render () {
@@ -75,12 +122,19 @@ class App extends Component {
                 <BrowserRouter>
                     <div>
                         <Switch>
-                            <Route path='/gallery/:fullscreen' component={Gallery} />
-                            <Route path='/gallery' component={Gallery} />
                             <Route path='/about' component={About} />
-                            <Route path='/purchase' component={Purchase} />
-                            <Route path='/' render={props => (<Gallery {...props} Firebase={Firebase} />)} />
-                            {/* <Route path='/' component={Open} /> */}
+                            {/* <Route path='/purchase' component={Purchase} /> */}
+                            <Route path='/purchase' render={props => (
+                                <Purchase {...props}
+                                    data={this.state.data}
+                                />)} />
+                            <Route path='/gallery' render={props => (
+                                <Gallery {...props}
+                                    Firebase={Firebase}
+                                    imgURI={this.state.imgURI}
+                                    data={this.state.data}
+                                />)} />
+                            <Route path='/' component={Open} />
                         </Switch>
                         {/* <Navigation /> */}
                     </div>

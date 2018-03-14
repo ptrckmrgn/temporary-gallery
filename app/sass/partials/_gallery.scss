@@ -9,57 +9,56 @@
         }
     }
     #gallery-piece {
-        // display: none;
-        // visibility: hidden;
-        // opacity: 0;
-        // transition: visibility 0s, opacity 1s;
-        .wire {
-            position: absolute;
-            width: 1px;
-            height: 15%;
-            background: #eee;
-            box-shadow: rgba(102,102,102,0.1) 24px 0 4px 0,
-                rgba(102,102,102,0.1) -9px 0 6px 0;
-            &#left-wire {
-                top: 0;
-                left: 33.3%;
-            }
-            &#right-wire {
-                top: 0;
-                left: 66.6%;
-            }
-            @media screen and (max-width: $tablet) {
-                height: 8%;
-            }
-        }
-        #canvas-wrapper {
-            position: absolute;
-            top: 15%;
-            left: 50%;
-            width: 50%;
-            height: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            justify-content: center;
-            @media screen and (max-width: $tablet) {
-                top: 8%;
-                width: 90%;
-            }
-            #canvas {
-                background-size: contain;
-                background-repeat: no-repeat;
-                background-color: rgba(0,0,0,0.5);
-                width: 0;
-                height: 0;
-                box-shadow: rgba(0,0,0,0.2) 29px 33px 10px 0,
-                    rgba(0,0,0,0.5) 0px 0px 10px 0,
-                    rgba(102,102,102,0.2) -13px 16px 10px 0,
-                    rgba(0,0,0,0.2) -3px 3px 5px 0;
+        section {
+            height: calc(100vh - 140px);
+            .wire {
+                position: absolute;
+                width: 1px;
+                height: 15%;
+                background: #eee;
+                box-shadow: rgba(102,102,102,0.1) 24px 0 4px 0,
+                    rgba(102,102,102,0.1) -9px 0 6px 0;
+                &#left-wire {
+                    top: 0;
+                    left: 33.3%;
+                }
+                &#right-wire {
+                    top: 0;
+                    left: 66.6%;
+                }
                 @media screen and (max-width: $tablet) {
-                    box-shadow: rgba(0,0,0,0.2) 14px 16px 10px 0,
+                    height: 8%;
+                }
+            }
+            #canvas-wrapper {
+                position: absolute;
+                top: 15%;
+                left: 50%;
+                width: 50%;
+                height: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                justify-content: center;
+                @media screen and (max-width: $tablet) {
+                    top: 8%;
+                    width: 90%;
+                }
+                #canvas {
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-color: rgba(0,0,0,0.5);
+                    width: 0;
+                    height: 0;
+                    box-shadow: rgba(0,0,0,0.2) 29px 33px 10px 0,
                         rgba(0,0,0,0.5) 0px 0px 10px 0,
-                        rgba(102,102,102,0.2) -7px 8px 10px 0,
-                        rgba(0,0,0,0.2) -1px 1px 5px 0;
+                        rgba(102,102,102,0.2) -13px 16px 10px 0,
+                        rgba(0,0,0,0.2) -3px 3px 5px 0;
+                    @media screen and (max-width: $tablet) {
+                        box-shadow: rgba(0,0,0,0.2) 14px 16px 10px 0,
+                            rgba(0,0,0,0.5) 0px 0px 10px 0,
+                            rgba(102,102,102,0.2) -7px 8px 10px 0,
+                            rgba(0,0,0,0.2) -1px 1px 5px 0;
+                    }
                 }
             }
         }

@@ -1,11 +1,7 @@
 #closed {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    h1 {
-        opacity: 0.2;
+    .container {
+        text-align: center;
+        margin-bottom: 4vh;
     }
     #hours {
         color: $super-dark-grey;
