@@ -26,7 +26,7 @@
                     top: 0;
                     left: 66.6%;
                 }
-                @media screen and (max-width: $tablet) {
+                @media screen and (max-width: $mobile) {
                     height: 8%;
                 }
             }
@@ -39,21 +39,21 @@
                 transform: translateX(-50%);
                 display: flex;
                 justify-content: center;
-                @media screen and (max-width: $tablet) {
+                @media screen and (max-width: $mobile) {
                     top: 8%;
                     width: 90%;
                 }
                 #canvas {
-                    background-size: contain;
-                    background-repeat: no-repeat;
+                    // background-size: contain;
+                    // background-repeat: no-repeat;
                     background-color: rgba(0,0,0,0.5);
-                    width: 0;
-                    height: 0;
-                    box-shadow: rgba(0,0,0,0.2) 29px 33px 10px 0,
+                    // width: 0;
+                    // height: 0;
+                    box-shadow: rgba(0,0,0,0.2) 25px 30px 10px 0,
                         rgba(0,0,0,0.5) 0px 0px 10px 0,
                         rgba(102,102,102,0.2) -13px 16px 10px 0,
                         rgba(0,0,0,0.2) -3px 3px 5px 0;
-                    @media screen and (max-width: $tablet) {
+                    @media screen and (max-width: $mobile) {
                         box-shadow: rgba(0,0,0,0.2) 14px 16px 10px 0,
                             rgba(0,0,0,0.5) 0px 0px 10px 0,
                             rgba(102,102,102,0.2) -7px 8px 10px 0,

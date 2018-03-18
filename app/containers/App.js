@@ -37,25 +37,25 @@ class App extends Component {
     }
 
     componentDidMount() {
-        const img = 'gs://temporary-gallery.appspot.com/testimg4.png';
-        const data = 'zrTc2nOD3lJ5DYImVrq5';
-        const imgRef = Firebase.storage().refFromURL(img);
-        const dataRef = Firebase.firestore().collection('piece').doc(data);
+        const dataRef = Firebase.firestore().collection('gallery').doc('piece');
 
         // TODO: storage permissions
         // TODO: hide data if closed
-        imgRef.getDownloadURL().then(imageURL => {
-            this.getDataURI(imageURL, imgURI => {
-                this.setState({
-                    imgURI,
-                    isLoading: false
-                });
-            });
-        });
 
         dataRef.get().then(doc => {
+            const pieceData = doc.data();
             this.setState({
-                data: doc.data()
+                data: pieceData,
+            });
+
+            const imgRef = Firebase.storage().refFromURL(pieceData.image);
+            imgRef.getDownloadURL().then(imageURL => {
+                this.getDataURI(imageURL, imgURI => {
+                    this.setState({
+                        imgURI,
+                        isLoading: false
+                    });
+                });
             });
         }).catch(error => {
             console.log("Error getting document:", error);
@@ -91,17 +91,17 @@ class App extends Component {
         const image = new Image();
         image.setAttribute('crossOrigin', 'anonymous');
         image.onload = function() {
-            var canvas = document.createElement('canvas');
-            canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
-            canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+            var canvas3 = document.createElement('canvas');
+            canvas3.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+            canvas3.height = this.naturalHeight; // or 'height' if you want a special/scaled size
 
-            canvas.getContext('2d').drawImage(this, 0, 0);
+            canvas3.getContext('2d').drawImage(this, 0, 0);
 
             // Get raw image data
             // callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
 
             // ... or get as Data URI
-            callback(canvas.toDataURL('image/png'));
+            callback(canvas3.toDataURL('image/png'));
         };
         image.src = url;
     }
@@ -127,6 +127,7 @@ class App extends Component {
                             <Route path='/purchase' render={props => (
                                 <Purchase {...props}
                                     data={this.state.data}
+                                    imgURI={this.state.imgURI}
                                 />)} />
                             <Route path='/gallery' render={props => (
                                 <Gallery {...props}

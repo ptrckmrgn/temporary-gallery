@@ -1,10 +1,15 @@
 #purchase {
-    .container {
-        width: 320px;
+    .content {
+        max-width: 800px;
+        width: 100%;
+    }
+    .canvas-wrapper {
+        margin-bottom: 20px;
     }
     label {
         color: $light-grey;
         font-size: 10px;
+        font-weight: 400;
         display: block;
         margin-bottom: 8px;
     }
@@ -14,6 +19,7 @@
         outline-color: $light-grey;
         outline-width: 3px;
         margin-bottom: 16px;
+        max-width: 300px;
         width: 100%;
     }
 

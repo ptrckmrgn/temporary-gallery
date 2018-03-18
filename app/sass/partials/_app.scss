@@ -1,5 +1,6 @@
 #app {
     background: url('/assets/background.jpg') repeat;
+    padding: 20px;
 }
 
 .page-wrapper {
@@ -18,6 +19,22 @@
         }
     }
 }
+
+// .row {
+//     display: flex;
+//     flex-direction: row;
+//     @media screen and (max-width: $mobile) {
+//         flex-direction: column;
+//     }
+//     .column {
+//         flex: 1;
+//         margin: 0 20px 20px 20px;
+//         width: 50%;
+//         @media screen and (max-width: $mobile) {
+//             width: 100%;
+//         }
+//     }
+// }
 
 a {
     text-decoration: none;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Piece from '../components/Piece';
+import Piece from './Piece';
 import Loader from '../components/Loader';
 import Navigation from '../components/Navigation';
 
