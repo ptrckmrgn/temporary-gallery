@@ -4,7 +4,10 @@
         width: 100%;
     }
     .canvas-wrapper {
+        display: flex;
+        align-items: center;
         margin-bottom: 20px;
+        height: 400px;
     }
     label {
         color: $light-grey;
@@ -16,11 +19,12 @@
 
     input, textarea {
         border: 1px solid $super-light-grey;
-        outline-color: $light-grey;
+        outline-color: $dark-grey;
         outline-width: 3px;
         margin-bottom: 16px;
         max-width: 300px;
         width: 100%;
+        font-size: 12px;
     }
 
     input {

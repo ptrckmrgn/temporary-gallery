@@ -20,30 +20,39 @@
                     rgba(102,102,102,0.1) -9px 0 6px 0;
                 &#left-wire {
                     top: 0;
-                    left: 33.3%;
+                    left: calc(33.3% - 100px);
                 }
                 &#right-wire {
                     top: 0;
-                    left: 66.6%;
+                    left: calc(66.6% - 100px);
                 }
                 @media screen and (max-width: $mobile) {
-                    height: 8%;
+                    height: 10%;
+                    &#left-wire {
+                        left: 33.3%;
+                    }
+                    &#right-wire {
+                        left: 66.6%;
+                    }
                 }
             }
             #canvas-wrapper {
                 position: absolute;
                 top: 15%;
-                left: 50%;
+                left: calc(50% - 100px);
                 width: 50%;
                 height: 50%;
                 transform: translateX(-50%);
                 display: flex;
                 justify-content: center;
                 @media screen and (max-width: $mobile) {
-                    top: 8%;
+                    top: 10%;
                     width: 90%;
+                    left: 5%;
+                    transform: none;
+                    height: 60%;
                 }
-                #canvas {
+                .secure-image {
                     // background-size: contain;
                     // background-repeat: no-repeat;
                     background-color: rgba(0,0,0,0.5);
@@ -59,6 +68,20 @@
                             rgba(102,102,102,0.2) -7px 8px 10px 0,
                             rgba(0,0,0,0.2) -1px 1px 5px 0;
                     }
+                }
+            }
+            .card {
+                display: flex;
+                flex-flow: row wrap;
+                position: absolute;
+                bottom: 35%;
+                left: calc(50% + 180px);
+                width: 200px;
+                @media screen and (max-width: $mobile) {
+                    // top: 70%;
+                    right: 5%;
+                    bottom: 5%;
+                    left: auto;
                 }
             }
         }

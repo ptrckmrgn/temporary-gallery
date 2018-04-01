@@ -11,35 +11,44 @@ class SecureImage extends Component {
     }
 
     componentWillMount() {
-        const unique = 'si-' + _.random(0,99999999);
-        this.setState({id: unique});
+        const id = 'si-' + _.random(0,99999999);
+        this.setState({id});
     }
 
     componentDidMount() {
-        this.getParentSize();
+        window.onresize = () => {
+            this.resizePiece(this.state.imgWidth, this.state.imgHeight);
+        }
+
+        const img = new Image();
+        img.onload = () => {
+            this.setState({
+                imgWidth: img.width,
+                imgHeight: img.height
+            });
+            this.resizePiece(img.width, img.height);
+        }
+        img.src = this.props.url;
     }
 
-    getParentSize() {
-        const si = document.querySelector(`#${this.state.id}`);
-        const parent = si.parentElement;
-
-        const image = new Image();
-        image.onload = () => {
-            const siWidth = image.width;
-            const siHeight = image.height;
-
-            const ratio = parent.offsetWidth / siWidth;
-            si.style.width = ratio * siWidth + 'px';
-            si.style.height = ratio * siHeight + 'px';
+    resizePiece(naturalWidth, naturalHeight) {
+        if (naturalWidth != 0 && naturalHeight != 0) {
+            const si = document.querySelector(`#${this.state.id}`);
+            const parent = si.parentElement;
+            const ratio = _.min([parent.offsetWidth / naturalWidth,
+                        parent.offsetHeight / naturalHeight]);
+            this.setState({
+                scaledWidth: ratio * naturalWidth,
+                scaledHeight: ratio * naturalHeight
+            });
         }
-        image.src = this.props.url;
     }
 
     render() {
         const style = {
             backgroundImage: `url('${this.props.url}')`,
-            width: this.props.width + 'px',
-            height: this.props.height + 'px',
+            width: this.state.scaledWidth + 'px',
+            height: this.state.scaledHeight + 'px',
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
             backgroundColor: 'rgba(0,0,0,0.5)'

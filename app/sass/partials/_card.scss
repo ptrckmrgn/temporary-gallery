@@ -1,0 +1,35 @@
+.card {
+    padding: 16px;
+    font-size: 12px;
+    background-color: #fdfdfd;
+    box-shadow: rgba(145,145,145,0.5) -4px 4px 5px 0,
+        rgba(0,0,0,0.1) 0px 0px 10px 0;
+    .card-artist {
+        font-weight: 700;
+        flex-basis: 75%;
+        margin-bottom: 4px;
+    }
+    .card-price {
+        flex-basis: 25%;
+        text-align: right;
+    }
+    .card-title {
+        font-weight: 700;
+        font-style: italic;
+        margin-right: 8px;
+    }
+    .card-medium, .card-dimensions {
+        font-size: 10px;
+        color: $light-grey;
+    }
+    .card-medium {
+        margin-top: 8px;
+    }
+    .card-description {
+        font-size: 8px;
+        margin-top: 8px;
+    }
+}
+.card > * {
+  flex: 1 100%;
+}

@@ -8,46 +8,41 @@ class Purchase extends Component {
         super(props);
 
         this.state = {
+            name: '',
+            email: '',
+            message: ''
         };
+
+        this.onChangeName = this.onChangeName.bind(this);
+        this.sendMessage = this.sendMessage.bind(this);
     }
 
-    componentDidMount() {
-        window.onresize = () => {
-            this.resizePiece(this.state.imgWidth, this.state.imgHeight);
-        }
-
-        const img = new Image();
-        img.onload = () => {
-            this.setState({
-                imgWidth: img.width,
-                imgHeight: img.height
-            });
-            this.resizePiece(img.width, img.height);
-        }
-        img.src = this.props.imgURI;
+    onChangeName(name) {
+        this.setState({name})
     }
 
-    resizePiece(naturalWidth, naturalHeight) {
-        if (naturalWidth != 0 && naturalHeight != 0) {
-            const si = document.querySelector(`#secure-image`);
-            const parent = si.parentElement;
-            const ratio = parent.offsetWidth / naturalWidth;
-            this.setState({
-                scaledWidth: ratio * naturalWidth,
-                scaledHeight: ratio * naturalHeight
-            });
-        }
+    onChangeEmail(email) {
+        this.setState({email})
+    }
+
+    onChangeMessage(message) {
+        this.setState({message})
+    }
+
+    sendMessage() {
+        // TODO: validation & loading state
+        this.props.Firebase.firestore().collection('messages').add({
+            name: this.state.name,
+            email: this.state.email,
+            message: this.state.message
+        }).then(() => {
+            // TODO: success
+        }).catch(() => {
+            // TODO: error
+        });
     }
 
     render() {
-        const secureImageStyle = {
-            backgroundImage: `url('${this.props.imgURI}')`,
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            width: this.state.scaledWidth,
-            height: this.state.scaledHeight
-        }
 
         return (
             <div id="purchase" className="page-wrapper has-navigation">
@@ -56,9 +51,12 @@ class Purchase extends Component {
                         <div className="row">
                             <div className="one-half column">
                                 <div className="canvas-wrapper">
-                                    <div className="canvas">
-                                        <div id="secure-image" style={secureImageStyle}></div>
-                                    </div>
+                                    {/* <div className="canvas"> */}
+                                        <SecureImage
+                                            url={this.props.imgURI}
+                                        />
+                                        {/* <div id="secure-image" style={secureImageStyle}></div> */}
+                                    {/* </div> */}
                                 </div>
                             </div>
                             <div className="one-half column">
@@ -70,12 +68,26 @@ class Purchase extends Component {
 
                                 <p style={{marginBottom: '32px'}}>Have a question, or interested in buying this piece? Send us a message.</p>
 
+                                <label>Your name</label>
+                                <input
+                                    name="name"
+                                    onChange={event => this.onChangeName(event.target.value)}
+                                    value={this.state.name}
+                                />
                                 <label>Your email</label>
-                                <input />
+                                <input
+                                    name="email"
+                                    onChange={event => this.onChangeEmail(event.target.value)}
+                                    value={this.state.email}
+                                />
                                 <label>Message</label>
-                                <textarea rows="6"></textarea>
-
-                                <button className="btn primary-btn">Send Enquiry</button>
+                                <textarea
+                                    name="message"
+                                    rows="6"
+                                    onChange={event => this.onChangeMessage(event.target.value)}
+                                    value={this.state.message}
+                                ></textarea>
+                                <button className="btn primary-btn" onClick={this.sendMessage}>Send Enquiry</button>
                             </div>
 
 

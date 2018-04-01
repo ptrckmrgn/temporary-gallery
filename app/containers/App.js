@@ -126,6 +126,7 @@ class App extends Component {
                             {/* <Route path='/purchase' component={Purchase} /> */}
                             <Route path='/purchase' render={props => (
                                 <Purchase {...props}
+                                    Firebase={Firebase}
                                     data={this.state.data}
                                     imgURI={this.state.imgURI}
                                 />)} />
