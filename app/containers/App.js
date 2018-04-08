@@ -122,20 +122,27 @@ class App extends Component {
                 <BrowserRouter>
                     <div>
                         <Switch>
-                            <Route path='/about' component={About} />
+                            {/* <Route path='/about' component={About} /> */}
                             {/* <Route path='/purchase' component={Purchase} /> */}
+                            <Route path='/about' render={props => (
+                                <About {...props}
+                                    data={this.state.data}
+                                />)}
+                            />
                             <Route path='/purchase' render={props => (
                                 <Purchase {...props}
                                     Firebase={Firebase}
                                     data={this.state.data}
                                     imgURI={this.state.imgURI}
-                                />)} />
+                                />)}
+                            />
                             <Route path='/gallery' render={props => (
                                 <Gallery {...props}
                                     Firebase={Firebase}
                                     imgURI={this.state.imgURI}
                                     data={this.state.data}
-                                />)} />
+                                />)}
+                            />
                             <Route path='/' component={Open} />
                         </Switch>
                         {/* <Navigation /> */}

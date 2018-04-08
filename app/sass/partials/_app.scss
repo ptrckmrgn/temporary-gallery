@@ -1,7 +1,28 @@
 #app {
     background: url('/assets/background.jpg') repeat;
-    padding: 20px;
+    // padding: 20px;
+    overflow-x: hidden;
 }
+.page {
+    position: relative;
+    left: 0;
+    width: 100vw;
+    transition: all $nav-speed;
+    transition-timing-function: $nav-easing;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.active {
+        left: $nav-width;
+        width: calc(100vw - #{$nav-width});
+        @media screen and (max-width: $mobile) {
+            width: 100vw;
+        }
+    }
+}
+
+
 
 .page-wrapper {
     section {

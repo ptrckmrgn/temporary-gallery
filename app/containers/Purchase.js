@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 
 import SecureImage from '../components/SecureImage';
-import Navigation from '../components/Navigation';
+import PurchaseContent from '../components/PurchaseContent';
+import Navigation from './Navigation';
 
 class Purchase extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            isNavActive: true,
             name: '',
             email: '',
             message: ''
         };
 
+        this.onClickToggleNav = this.onClickToggleNav.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeMessage = this.onChangeMessage.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
+    }
+
+    onClickToggleNav() {
+        this.setState({isNavActive: !this.state.isNavActive});
     }
 
     onChangeName(name) {
@@ -45,18 +54,38 @@ class Purchase extends Component {
     render() {
 
         return (
-            <div id="purchase" className="page-wrapper has-navigation">
+            <div id="purchase">
+                <Navigation
+                    isActive={this.state.isNavActive}
+                    activePage={'purchase'}
+                    onClickToggle={this.onClickToggleNav}
+                    data={this.props.data}
+                />
+                <div className={`page ${this.state.isNavActive ? 'active' : ''}`}>
+                    <PurchaseContent
+                        name={this.state.name}
+                        email={this.state.email}
+                        message={this.state.message}
+
+                        onChangeName={this.onChangeName}
+                        onChangeEmail={this.onChangeEmail}
+                        onChangeMessage={this.onChangeMessage}
+                        sendMessage={this.sendMessage}
+                    />
+                </div>
+                {/* <Navigation
+                    navShown='true'
+                    active='purchase'
+                /> */}
+            {/* <div id="purchase" className="page-wrapper has-navigation">
                 <section>
                     <div className="container content">
                         <div className="row">
                             <div className="one-half column">
                                 <div className="canvas-wrapper">
-                                    {/* <div className="canvas"> */}
-                                        <SecureImage
-                                            url={this.props.imgURI}
-                                        />
-                                        {/* <div id="secure-image" style={secureImageStyle}></div> */}
-                                    {/* </div> */}
+                                    <SecureImage
+                                        url={this.props.imgURI}
+                                    />
                                 </div>
                             </div>
                             <div className="one-half column">
@@ -89,21 +118,10 @@ class Purchase extends Component {
                                 ></textarea>
                                 <button className="btn primary-btn" onClick={this.sendMessage}>Send Enquiry</button>
                             </div>
-
-
-                            {/* <div className="container-left">
-                                <img src={this.props.dataURI} />
-                            </div>
-                            <div className="container-right">
-
-                            </div> */}
                         </div>
                     </div>
-                </section>
-                <Navigation
-                    navShown='true'
-                    active='purchase'
-                />
+                </section> */}
+
             </div>
         );
     }

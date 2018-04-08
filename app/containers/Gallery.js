@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Card from '../components/Card';
 import Loader from '../components/Loader';
 import SecureImage from '../components/SecureImage';
-import Navigation from '../components/Navigation';
+import Navigation from './Navigation';
 
 class Gallery extends Component {
     constructor(props) {
@@ -12,12 +12,12 @@ class Gallery extends Component {
 
         this.state = {
             introHidden: false,
-            navShown: false
+            isNavActive: false
         };
 
         this.isIntroHidden = this.isIntroHidden.bind(this);
         this.isPieceLoaded = this.isPieceLoaded.bind(this);
-        this.isNavShown = this.isNavShown.bind(this);
+        this.onClickToggleNav = this.onClickToggleNav.bind(this);
     }
 
     isIntroHidden() {
@@ -28,20 +28,30 @@ class Gallery extends Component {
         this.setState({pieceLoaded: true});
     }
 
-    isNavShown() {
-        this.setState({navShown: !this.state.navShown});
+    onClickToggleNav() {
+        this.setState({isNavActive: !this.state.isNavActive});
     }
 
     render() {
         if (this.props.data) {
             return (
-                <div id="gallery" className="page">
-                    <div id="gallery-piece" className="page has-navigation">
+                <div id="gallery">
+                    <Navigation
+                        isActive={this.state.isNavActive}
+                        activePage={'gallery'}
+                        onClickToggle={this.onClickToggleNav}
+                        data={this.props.data}
+                    />
+                    <div className={`page ${this.state.isNavActive ? 'active' : ''}`}>
+                        <div id="piece">
+                            <SecureImage url={this.props.imgURI} />
+                        </div>
+                    {/* }<div id="gallery-piece" className="page has-navigation">
                         <section id="piece">
-                            <div id="left-wire" className="wire"></div>
-                            <div id="right-wire" className="wire"></div>
                             <div id="canvas-wrapper">
-                                    <SecureImage url={this.props.imgURI} />
+                                <div id="left-wire" className="wire"></div>
+                                <div id="right-wire" className="wire"></div>
+                                <SecureImage url={this.props.imgURI} />
                             </div>
                             <Link to="/purchase">
                                 <Card
@@ -54,6 +64,7 @@ class Gallery extends Component {
                             isNavShown={this.isNavShown}
                             active="home"
                         />
+                    </div> */}
                     </div>
                 </div>
             );

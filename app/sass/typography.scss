@@ -25,6 +25,7 @@ h6 {
 
 h1 {
     font-size: 60px;
+    font-weight: 700;
 }
 h2 {
 
@@ -50,4 +51,12 @@ h6 {
 
 a {
     color: $dark-grey;
+}
+
+label {
+    color: $light-grey;
+    font-size: 10px;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 8px;
 }

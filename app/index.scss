@@ -1,9 +1,11 @@
 // @import './sass/bulma';
 // @import './node_modules/bulma/bulma';
 @import '../node_modules/normalize.css/normalize.css';
+@import '../node_modules/slideout/index.css';
 // @import '../node_modules/skeleton-css/css/skeleton.css';
 @import './sass/variables';
 @import './sass/typography';
+@import './sass/forms';
 
 // PAGES
 @import './sass/partials/grid';
@@ -13,8 +15,6 @@
 @import './sass/partials/closed';
 @import './sass/partials/gallery';
 @import './sass/partials/navigation';
-@import './sass/partials/about';
-@import './sass/partials/purchase';
 @import './sass/partials/card';
 
 // COMPONENTS
