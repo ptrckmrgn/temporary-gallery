@@ -13,7 +13,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    &.active {
+}
+.nav-active {
+    .page {
         left: $nav-width;
         width: calc(100vw - #{$nav-width});
         @media screen and (max-width: $mobile) {
@@ -21,6 +23,7 @@
         }
     }
 }
+
 
 
 

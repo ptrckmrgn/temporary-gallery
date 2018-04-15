@@ -13,23 +13,36 @@ class Navigation extends Component {
             isNavActive: true
         };
 
-        this.onClickToggleNav = this.onClickToggleNav.bind(this);
+        this.onClickToggle = this.onClickToggle.bind(this);
     }
 
-    onClickToggleNav() {
+    componentDidMount() {
+        const MOBILE_WIDTH = 600;
+        if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < MOBILE_WIDTH
+                || !this.props.isNavActive) {
+            this.setState({isNavActive: false});
+            const parent = document.querySelector('#navigation').parentElement;
+            parent.classList.remove('nav-active');
+        }
+    }
+
+    onClickToggle() {
         this.setState({isNavActive: !this.state.isNavActive});
+
+        const parent = document.querySelector('#navigation').parentElement;
+        parent.classList.toggle('nav-active');
     }
 
     render() {
         return (
             <div id="navigation">
                 <NavigationToggle
-                    onClickToggle={this.props.onClickToggle}
+                    onClickToggle={this.onClickToggle}
                 />
                 <NavigationDrawer
-                    isActive={this.props.isActive}
+                    isNavActive={this.state.isNavActive}
                     activePage={this.props.activePage}
-                    data={this.props.data}
+                    pieceData={this.props.pieceData}
                 />
             </div>
         );

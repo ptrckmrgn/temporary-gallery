@@ -8,31 +8,21 @@ class About extends Component {
         super(props);
 
         this.state = {
-            isNavActive: true,
+            // isNavActive: true,
         };
 
-        this.onClickToggleNav = this.onClickToggleNav.bind(this);
-        // this.onClickCloseNav = this.onClickCloseNav.bind(this);
+        // this.setNavActive = this.setNavActive.bind(this);
     }
-
-    onClickToggleNav() {
-        this.setState({isNavActive: !this.state.isNavActive});
-    }
-
-    // onClickCloseNav() {
-    //     this.setState({isNavActive: false});
-    // }
 
     render() {
         return (
-            <div id="about">
+            <div id="about" className="nav-active">
                 <Navigation
-                    isActive={this.state.isNavActive}
+                    isNavActive={true}
                     activePage={'about'}
-                    onClickToggle={this.onClickToggleNav}
-                    data={this.props.data}
+                    pieceData={this.props.pieceData}
                 />
-                <div className={`page ${this.state.isNavActive ? 'active' : ''}`}>
+                <div className="page">
                     <AboutContent />
                 </div>
             </div>

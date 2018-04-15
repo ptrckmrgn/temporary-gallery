@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Card from '../components/Card';
 import Loader from '../components/Loader';
 import SecureImage from '../components/SecureImage';
 import Navigation from './Navigation';
@@ -12,12 +11,10 @@ class Gallery extends Component {
 
         this.state = {
             introHidden: false,
-            isNavActive: false
         };
 
         this.isIntroHidden = this.isIntroHidden.bind(this);
         this.isPieceLoaded = this.isPieceLoaded.bind(this);
-        this.onClickToggleNav = this.onClickToggleNav.bind(this);
     }
 
     isIntroHidden() {
@@ -28,43 +25,25 @@ class Gallery extends Component {
         this.setState({pieceLoaded: true});
     }
 
-    onClickToggleNav() {
-        this.setState({isNavActive: !this.state.isNavActive});
+    componentDidMount() {
+        document.querySelector('#overlay').classList.remove('first-load');
+        this.props.setFirstLoad(false);
     }
 
     render() {
-        if (this.props.data) {
+        if (this.props.pieceData) {
             return (
-                <div id="gallery">
+                <div id="gallery" className="nav-active">
+                    <div id="overlay" className={this.props.isFirstLoad ? 'first-load' : ''}></div>
                     <Navigation
-                        isActive={this.state.isNavActive}
+                        isNavActive={false}
                         activePage={'gallery'}
-                        onClickToggle={this.onClickToggleNav}
-                        data={this.props.data}
+                        pieceData={this.props.pieceData}
                     />
-                    <div className={`page ${this.state.isNavActive ? 'active' : ''}`}>
+                    <div className="page">
                         <div id="piece">
-                            <SecureImage url={this.props.imgURI} />
+                            <SecureImage url={this.props.pieceURI} />
                         </div>
-                    {/* }<div id="gallery-piece" className="page has-navigation">
-                        <section id="piece">
-                            <div id="canvas-wrapper">
-                                <div id="left-wire" className="wire"></div>
-                                <div id="right-wire" className="wire"></div>
-                                <SecureImage url={this.props.imgURI} />
-                            </div>
-                            <Link to="/purchase">
-                                <Card
-                                    data={this.props.data}
-                                />
-                            </Link>
-                        </section>
-                        <Navigation
-                            navShown={this.state.navShown}
-                            isNavShown={this.isNavShown}
-                            active="home"
-                        />
-                    </div> */}
                     </div>
                 </div>
             );

@@ -31,9 +31,12 @@ class App extends Component {
         this.state = {
             isLoading: true,
             isOpen: true,
-            imgURI: null,
-            data: null,
+            pieceURI: null,
+            pieceData: null,
+            isFirstLoad: true
         };
+
+        this.setFirstLoad = this.setFirstLoad.bind(this);
     }
 
     componentDidMount() {
@@ -45,14 +48,14 @@ class App extends Component {
         dataRef.get().then(doc => {
             const pieceData = doc.data();
             this.setState({
-                data: pieceData,
+                pieceData: pieceData,
             });
 
             const imgRef = Firebase.storage().refFromURL(pieceData.image);
             imgRef.getDownloadURL().then(imageURL => {
-                this.getDataURI(imageURL, imgURI => {
+                this.getDataURI(imageURL, pieceURI => {
                     this.setState({
-                        imgURI,
+                        pieceURI,
                         isLoading: false
                     });
                 });
@@ -106,6 +109,10 @@ class App extends Component {
         image.src = url;
     }
 
+    setFirstLoad(isFirstLoad) {
+        this.setState({isFirstLoad})
+    }
+
     render () {
         if (this.state.isLoading) {
             return (
@@ -122,25 +129,25 @@ class App extends Component {
                 <BrowserRouter>
                     <div>
                         <Switch>
-                            {/* <Route path='/about' component={About} /> */}
-                            {/* <Route path='/purchase' component={Purchase} /> */}
                             <Route path='/about' render={props => (
                                 <About {...props}
-                                    data={this.state.data}
+                                    pieceData={this.state.pieceData}
                                 />)}
                             />
                             <Route path='/purchase' render={props => (
                                 <Purchase {...props}
                                     Firebase={Firebase}
-                                    data={this.state.data}
-                                    imgURI={this.state.imgURI}
+                                    pieceData={this.state.pieceData}
                                 />)}
                             />
                             <Route path='/gallery' render={props => (
                                 <Gallery {...props}
                                     Firebase={Firebase}
-                                    imgURI={this.state.imgURI}
-                                    data={this.state.data}
+                                    pieceURI={this.state.pieceURI}
+                                    pieceData={this.state.pieceData}
+                                    isFirstLoad={this.state.isFirstLoad}
+
+                                    setFirstLoad={this.setFirstLoad}
                                 />)}
                             />
                             <Route path='/' component={Open} />
