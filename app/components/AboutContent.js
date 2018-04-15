@@ -2,6 +2,7 @@ import React from 'react';
 
 const style = {
     maxWidth: '500px',
+    minHeight: '500px',
     padding: '0 16px'
 }
 

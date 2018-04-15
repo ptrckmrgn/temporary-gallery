@@ -2,15 +2,19 @@ import React from 'react';
 
 import Loader from '../components/Loader';
 
-const About = () => {
+const Welcome = () => {
+    const style = {
+        minHeight: '300px'
+    }
+
     return (
         <div id="welcome" className="page">
-            <div>
-                <h1>IAGO</h1>
+            <div style={style}>
+                <h1 style={{opacity: '0.2'}}>IAGO</h1>
                 <Loader center={true} />
             </div>
         </div>
     );
 }
 
-export default About;
+export default Welcome;

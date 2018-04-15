@@ -31,6 +31,7 @@ class App extends Component {
         this.state = {
             isLoading: true,
             isOpen: true,
+            openingNext: '',
             pieceURI: null,
             pieceData: null,
             isFirstLoad: true
@@ -39,55 +40,65 @@ class App extends Component {
         this.setFirstLoad = this.setFirstLoad.bind(this);
     }
 
-    componentDidMount() {
+
+
+    updateTimestamp() {
+        const timestampRef = Firebase.firestore().collection('timestamp').doc('xw9Lf3HJpB9gYTZB5tKT');
+
+        return timestampRef.update({
+            timestamp: Firebase.firestore.FieldValue.serverTimestamp()
+        });
+    }
+
+    checkTime() {
+        const timestampRef = Firebase.firestore().collection('timestamp').doc('xw9Lf3HJpB9gYTZB5tKT');
+
+        return timestampRef.get();
+    }
+
+    getPieceData() {
         const dataRef = Firebase.firestore().collection('gallery').doc('piece');
 
         // TODO: storage permissions
         // TODO: hide data if closed
 
-        dataRef.get().then(doc => {
-            const pieceData = doc.data();
-            this.setState({
-                pieceData: pieceData,
-            });
+        return dataRef.get();
+    }
 
-            const imgRef = Firebase.storage().refFromURL(pieceData.image);
-            imgRef.getDownloadURL().then(imageURL => {
-                this.getDataURI(imageURL, pieceURI => {
+    componentDidMount() {
+        this.updateTimestamp().then(() => {
+            Promise.all([this.checkTime(), this.getPieceData()]).then(result => {
+                const timestamp = Date.parse(result[0].data().timestamp);
+                const pieceData = result[1].data();
+                const opening = Date.parse(pieceData.opening)
+                const closing = Date.parse(pieceData.closing)
+
+                if (timestamp > opening && timestamp < closing) {
                     this.setState({
-                        pieceURI,
-                        isLoading: false
+                        isOpen: true,
+                        pieceData
                     });
-                });
+
+                    const imgRef = Firebase.storage().refFromURL(pieceData.image);
+                    imgRef.getDownloadURL().then(imageURL => {
+                        this.getDataURI(imageURL, pieceURI => {
+                            this.setState({
+                                isLoading: false,
+                                pieceURI
+                            });
+                        });
+                    });
+                }
+                else {
+                    const openingNext = (timestamp < opening ? result[1].data().opening : result[1].data().opening_next)
+                    this.setState({
+                        isOpen: false,
+                        isLoading: false,
+                        openingNext
+                    });
+                }
             });
-        }).catch(error => {
-            console.log("Error getting document:", error);
         });
-
-        // axios.get('/timestamp').then(response => {
-        //     const timestamp = response.data;
-        //     const isOpen = _.floor(timestamp / 1000 / 60 % 2) == 0 ? true : false;
-        //
-        //     this.setState({
-        //         timestamp,
-        //         isOpen,
-        //         isLoading: false
-        //     });
-        // });
-
-        // const timestampRef = Firebase.firestore().collection('timestamp').doc('xw9Lf3HJpB9gYTZB5tKT');
-        // timestampRef.update({
-        //     value: Firebase.firestore.FieldValue.serverTimestamp()
-        // }).then(result => {
-        //     timestampRef.get().then(snapshot => {
-        //         const timestamp = Date.parse(snapshot.data().value);
-        //         const isOpen = _.floor(timestamp / 1000 / 60 % 2) == 0 ? true : false;
-        //         this.setState({
-        //             isOpen,
-        //             isLoading: false
-        //         });
-        //     });
-        // });
     }
 
     getDataURI(url, callback) {
@@ -121,7 +132,9 @@ class App extends Component {
         }
         else if (! this.state.isOpen) {
             return (
-                <Closed />
+                <Closed
+                    openingNext={this.state.openingNext}
+                />
             );
         }
         else {

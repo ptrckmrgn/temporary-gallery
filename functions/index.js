@@ -25,3 +25,16 @@ app.listen(3000, () => console.log('Example app listening on port 3000!'))
 //     const time = _.now();
 //     response.status(200).send(_.toString(time));
 // });
+
+
+
+// axios.get('/timestamp').then(response => {
+//     const timestamp = response.data;
+//     const isOpen = _.floor(timestamp / 1000 / 60 % 2) == 0 ? true : false;
+//
+//     this.setState({
+//         timestamp,
+//         isOpen,
+//         isLoading: false
+//     });
+// });
