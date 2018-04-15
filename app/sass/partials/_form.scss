@@ -1,0 +1,50 @@
+#form {
+    min-height: 500px;
+    label {
+        color: $light-grey;
+        font-size: 10px;
+        font-weight: 400;
+        display: block;
+        margin-top: 16px;
+        margin-bottom: 8px;
+    }
+
+    input, textarea {
+        border: 1px solid $super-light-grey;
+        outline-color: $dark-grey;
+        outline-width: 3px;
+        max-width: 300px;
+        width: 100%;
+        font-size: 12px;
+    }
+
+    input {
+        height: 24px;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    .error {
+        color: #f16262;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+
+    .btn {
+        margin-bottom: 16px;
+    }
+}
+
+// #form-success {
+//     width: 100%;
+//     height: 100px;
+//
+// }
+
+#form-failure {
+    color: #f16262;
+    // margin-top: 16px;
+    font-size: 12px;
+}

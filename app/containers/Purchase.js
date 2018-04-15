@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import validate from 'validate.js';
 
 import SecureImage from '../components/SecureImage';
 import PurchaseContent from '../components/PurchaseContent';
@@ -11,7 +12,11 @@ class Purchase extends Component {
         this.state = {
             name: '',
             email: '',
-            message: ''
+            message: '',
+            errors: null,
+            isLoading: false,
+            success: false,
+            failure: false
         };
 
         this.onChangeName = this.onChangeName.bind(this);
@@ -33,16 +38,31 @@ class Purchase extends Component {
     }
 
     sendMessage() {
-        // TODO: validation & loading state
-        this.props.Firebase.firestore().collection('messages').add({
+        const errors = validate({
             name: this.state.name,
             email: this.state.email,
             message: this.state.message
-        }).then(() => {
-            // TODO: success
-        }).catch(() => {
-            // TODO: error
+        }, {
+            name: {presence: {allowEmpty: false}},
+            email: {email: true},
+            message: {presence: {allowEmpty: false}}
         });
+
+        if (errors) {
+            this.setState({errors});
+        }
+        else {
+            this.setState({errors, isLoading: true});
+            this.props.Firebase.firestore().collection('messages').add({
+                name: this.state.name,
+                email: this.state.email,
+                message: this.state.message
+            }).then(() => {
+                this.setState({success: true, isLoading: false})
+            }).catch(() => {
+                this.setState({failure: true, isLoading: false})
+            });
+        }
     }
 
     render() {
@@ -59,6 +79,10 @@ class Purchase extends Component {
                         name={this.state.name}
                         email={this.state.email}
                         message={this.state.message}
+                        errors={this.state.errors}
+                        isLoading={this.state.isLoading}
+                        success={this.state.success}
+                        failure={this.state.failure}
 
                         onChangeName={this.onChangeName}
                         onChangeEmail={this.onChangeEmail}

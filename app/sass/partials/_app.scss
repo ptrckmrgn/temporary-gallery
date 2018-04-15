@@ -1,4 +1,4 @@
-* { 
+* {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -moz-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -85,7 +85,7 @@ a {
     text-transform: uppercase;
     padding: 8px 16px;
     cursor: pointer;
-    margin: 4px;
+    margin-top: 16px;
     &:hover {
         color: $light-grey;
     }

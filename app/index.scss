@@ -5,7 +5,6 @@
 // @import '../node_modules/skeleton-css/css/skeleton.css';
 @import './sass/variables';
 @import './sass/typography';
-@import './sass/forms';
 
 // PAGES
 @import './sass/partials/grid';
@@ -17,6 +16,5 @@
 @import './sass/partials/navigation-toggle';
 @import './sass/partials/navigation-drawer';
 @import './sass/partials/card';
+@import './sass/partials/form';
 
-// COMPONENTS
-@import './sass/partials/react-spinner';

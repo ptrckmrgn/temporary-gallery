@@ -7,7 +7,7 @@ const About = () => {
         <div id="welcome" className="page">
             <div>
                 <h1>IAGO</h1>
-                <Loader color="#ddd" />
+                <Loader center={true} />
             </div>
         </div>
     );
