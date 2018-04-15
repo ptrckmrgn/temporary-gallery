@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 
 const NavigationToggle = (props) => {
     return (
-        <div
-            id="navigation-toggle"
-            onClick={props.onClickToggle}
-        >
-            Toggle
-        </div>
+        <a id="navigation-toggle" onClick={props.onClickToggle}>
+            <div id="hamburger" title="Menu" className={props.isNavActive && 'active'}>
+                <span className="line line-1"></span>
+                <span className="line line-2"></span>
+                <span className="line line-3"></span>
+            </div>
+        </a>
     );
 }
 

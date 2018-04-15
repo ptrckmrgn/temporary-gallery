@@ -1,0 +1,41 @@
+#navigation-drawer {
+    position: absolute;
+    left: -$nav-width;
+    width: $nav-width;
+    height: 100vh;
+    transition: left $nav-speed;
+    transition-timing-function: $nav-easing;
+    &.active {
+        left: 0;
+    }
+    #nav-wrapper {
+        margin: 80px 32px 0 32px;
+        h1 {
+            color: #ccc;
+            margin: 0;
+        }
+        .divider {
+            background: #ccc;
+            width: 42px;
+            height: 4px;
+            border-radius: 2px;
+            margin: 32px 0;
+        }
+        .nav-item {
+            a {
+                display: inline-block;
+                width: 100%;
+                padding: 8px 0;
+                color: $light-grey;
+                font-size: 30px;
+                font-weight: 700;
+            }
+            &.active a {
+                color: $dark-grey;
+            }
+            &:hover a {
+                color: $dark-grey;
+            }
+        }
+    }
+}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Slideout from 'slideout';
 
 import AboutContent from '../components/AboutContent';
 import NavigationToggle from '../components/NavigationToggle';
@@ -37,6 +36,7 @@ class Navigation extends Component {
         return (
             <div id="navigation">
                 <NavigationToggle
+                    isNavActive={this.state.isNavActive}
                     onClickToggle={this.onClickToggle}
                 />
                 <NavigationDrawer
