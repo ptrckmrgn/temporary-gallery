@@ -5,7 +5,8 @@ class Open extends Component {
     render() {
         const style = {
             minHeight: '300px',
-            textAlign: 'center'
+            textAlign: 'center',
+            padding: '0 16px'
         }
 
         return (
@@ -13,7 +14,7 @@ class Open extends Component {
                 <div style={style}>
                     <h1>IAGO</h1>
                     <h3>We are open.</h3>
-                    <p>We recommend you remove yourself from any distractions.<br/>
+                    <p>We recommend you remove yourself from distractions.<br/>
                     Be comfortable, open, and present.</p>
                     <Link to="/gallery" className="btn primary-btn">Enter Gallery</Link>
                 </div>

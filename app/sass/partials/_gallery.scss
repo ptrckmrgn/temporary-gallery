@@ -6,6 +6,8 @@
         width: 100vw;
         background: #fff;
         opacity: 0;
+        -webkit-transition: all 0.5s 0.5s;
+        -o-transition: all 0.5s 0.5s;
         transition: all 0.5s 0.5s;
         &.first-load {
             opacity: 1;
@@ -18,23 +20,36 @@
         height: 80vh;
         max-width: 1000px;
         max-height: 800px;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+                align-items: center;
         @media screen and (max-width: $mobile) {
             margin: 0 16px;
             width: 100vw;
-            height: 100vh;
+            height: calc(100vh - 200px);
         }
         .secure-image {
             z-index: 2;
             background-color: rgba(0,0,0,0.5);
-            box-shadow: rgba(0,0,0,0.2) 25px 30px 10px 0,
+            -webkit-box-shadow: rgba(0,0,0,0.2) 25px 30px 10px 0,
+                rgba(0,0,0,0.5) 0px 0px 10px 0,
+                rgba(102,102,102,0.2) -13px 16px 10px 0,
+                rgba(0,0,0,0.2) -3px 3px 5px 0;
+                    box-shadow: rgba(0,0,0,0.2) 25px 30px 10px 0,
                 rgba(0,0,0,0.5) 0px 0px 10px 0,
                 rgba(102,102,102,0.2) -13px 16px 10px 0,
                 rgba(0,0,0,0.2) -3px 3px 5px 0;
             @media screen and (max-width: $mobile) {
-                box-shadow: rgba(0,0,0,0.2) 14px 16px 10px 0,
+                -webkit-box-shadow: rgba(0,0,0,0.2) 14px 16px 10px 0,
+                    rgba(0,0,0,0.5) 0px 0px 10px 0,
+                    rgba(102,102,102,0.2) -7px 8px 10px 0,
+                    rgba(0,0,0,0.2) -1px 1px 5px 0;box-shadow: rgba(0,0,0,0.2) 14px 16px 10px 0,
                     rgba(0,0,0,0.5) 0px 0px 10px 0,
                     rgba(102,102,102,0.2) -7px 8px 10px 0,
                     rgba(0,0,0,0.2) -1px 1px 5px 0;
@@ -44,9 +59,15 @@
 
     #gallery-intro {
         height: 100vh;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+                align-items: center;
         p {
             margin-bottom: 3rem;
         }
@@ -54,18 +75,28 @@
     #gallery-piece {
         #piece {
             height: calc(100vh - 140px);
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                    justify-content: center;
             @media screen and (max-width: $mobile) {
-                flex-direction: column;
+                -webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;
             }
             #canvas-wrapper {
                 margin-top: -20px;
                 width: 50%;
                 height: 50%;
+                display: -webkit-box;
+                display: -ms-flexbox;
                 display: flex;
-                justify-content: flex-end;
+                -webkit-box-pack: end;
+                -ms-flex-pack: end;
+                        justify-content: flex-end;
                 @media screen and (max-width: $mobile) {
+                    -webkit-box-pack: center;
+                    -ms-flex-pack: center;
                     justify-content: center;
                     height: 80%;
                     width: 100%;
@@ -75,8 +106,10 @@
                     width: 1px;
                     height: 15vh;
                     background: #eee;
-                    box-shadow: rgba(102,102,102,0.1) 24px 0 4px 0,
-                        rgba(102,102,102,0.1) -9px 0 6px 0;
+                    -webkit-box-shadow: rgba(102,102,102,0.1) 24px 0 4px 0,
+                       rgba(102,102,102,0.1) -9px 0 6px 0;
+                           box-shadow: rgba(102,102,102,0.1) 24px 0 4px 0,
+                       rgba(102,102,102,0.1) -9px 0 6px 0;
                     &#left-wire {
                         top: 0;
                         left: 20%;
@@ -99,12 +132,18 @@
                     margin-top: 15vh;
                     z-index: 999;
                     background-color: rgba(0,0,0,0.5);
-                    box-shadow: rgba(0,0,0,0.2) 25px 30px 10px 0,
+                    -webkit-box-shadow: rgba(0,0,0,0.2) 25px 30px 10px 0,
+                        rgba(0,0,0,0.5) 0px 0px 10px 0,
+                        rgba(102,102,102,0.2) -13px 16px 10px 0,
+                        rgba(0,0,0,0.2) -3px 3px 5px 0;box-shadow: rgba(0,0,0,0.2) 25px 30px 10px 0,
                         rgba(0,0,0,0.5) 0px 0px 10px 0,
                         rgba(102,102,102,0.2) -13px 16px 10px 0,
                         rgba(0,0,0,0.2) -3px 3px 5px 0;
                     @media screen and (max-width: $mobile) {
-                        box-shadow: rgba(0,0,0,0.2) 14px 16px 10px 0,
+                        -webkit-box-shadow: rgba(0,0,0,0.2) 14px 16px 10px 0,
+                            rgba(0,0,0,0.5) 0px 0px 10px 0,
+                            rgba(102,102,102,0.2) -7px 8px 10px 0,
+                            rgba(0,0,0,0.2) -1px 1px 5px 0;box-shadow: rgba(0,0,0,0.2) 14px 16px 10px 0,
                             rgba(0,0,0,0.5) 0px 0px 10px 0,
                             rgba(102,102,102,0.2) -7px 8px 10px 0,
                             rgba(0,0,0,0.2) -1px 1px 5px 0;
@@ -112,12 +151,18 @@
                 }
             }
             .card {
+                display: -webkit-box;
+                display: -ms-flexbox;
                 display: flex;
-                flex-flow: row wrap;
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: normal;
+                -ms-flex-flow: row wrap;
+                        flex-flow: row wrap;
                 width: 200px;
                 margin-left: 40px;
                 margin-top: 10vh;
-                align-self: center;
+                -ms-flex-item-align: center;
+                    align-self: center;
                 @media screen and (max-width: $mobile) {
                     margin-top: 30px;
                 }

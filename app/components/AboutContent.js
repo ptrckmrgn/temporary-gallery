@@ -3,15 +3,15 @@ import React from 'react';
 const style = {
     maxWidth: '500px',
     minHeight: '500px',
-    padding: '0 16px'
+    padding: '0 24px'
 }
 
 const AboutContent = (props) => {
     return (
         <div style={style}>
-            <h4>We are IAGO.</h4>
+            <h3>We are IAGO.</h3>
             <p>
-                We are an online, mono-piece gallery with opening hours. Why? Because…
+                We are an online gallery with opening hours. Why? Because…
             </p>
             <h4 style={{marginTop: '32px'}}>We are for the art.</h4>
             <p>

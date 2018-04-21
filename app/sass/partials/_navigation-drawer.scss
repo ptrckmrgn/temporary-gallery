@@ -3,8 +3,12 @@
     left: -$nav-width;
     width: $nav-width;
     height: 100vh;
+    -webkit-transition: left $nav-speed;
+    -o-transition: left $nav-speed;
     transition: left $nav-speed;
-    transition-timing-function: $nav-easing;
+    -webkit-transition-timing-function: $nav-easing;
+    -o-transition-timing-function: $nav-easing;
+            transition-timing-function: $nav-easing;
     &.active {
         left: 0;
     }

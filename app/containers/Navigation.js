@@ -13,12 +13,22 @@ class Navigation extends Component {
         };
 
         this.onClickToggle = this.onClickToggle.bind(this);
+        this.reroute = this.reroute.bind(this);
+    }
+
+    isMobile() {
+        const MOBILE_WIDTH = 600;
+        if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < MOBILE_WIDTH) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     componentDidMount() {
         const MOBILE_WIDTH = 600;
-        if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < MOBILE_WIDTH
-                || !this.props.isNavActive) {
+        if (this.isMobile || !this.props.isNavActive) {
             this.setState({isNavActive: false});
             const parent = document.querySelector('#navigation').parentElement;
             parent.classList.remove('nav-active');
@@ -32,6 +42,14 @@ class Navigation extends Component {
         parent.classList.toggle('nav-active');
     }
 
+    reroute(route) {
+        if (this.isMobile() && this.props.activePage === route) {
+            this.setState({isNavActive: false});
+            const parent = document.querySelector('#navigation').parentElement;
+            parent.classList.remove('nav-active');
+        }
+    }
+
     render() {
         return (
             <div id="navigation">
@@ -43,6 +61,8 @@ class Navigation extends Component {
                     isNavActive={this.state.isNavActive}
                     activePage={this.props.activePage}
                     pieceData={this.props.pieceData}
+
+                    reroute={this.reroute}
                 />
             </div>
         );

@@ -41,9 +41,11 @@ class Gallery extends Component {
                         pieceData={this.props.pieceData}
                     />
                     <div className="page">
-                        <div id="piece">
-                            <SecureImage url={this.props.pieceURI} />
-                        </div>
+                        <Link id="piece" to="/purchase">
+                            {/* <div id="piece"> */}
+                                <SecureImage url={this.props.pieceURI} />
+                            {/* </div> */}
+                        </Link>
                     </div>
                 </div>
             );

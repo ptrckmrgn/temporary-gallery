@@ -4,7 +4,7 @@ import Loader from './Loader';
 
 const style = {
     maxWidth: '320px',
-    padding: '0 16px'
+    padding: '0 24px'
 }
 
 const PurchaseContent = (props) => {

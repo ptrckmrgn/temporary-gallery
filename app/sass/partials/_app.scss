@@ -2,22 +2,45 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -moz-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+html {
+    background: url("/assets/background.jpg") repeat;
+}
+
 #app {
-    background: url('/assets/background.jpg') repeat;
     // padding: 20px;
     overflow-x: hidden;
 }
+
 .page {
     position: relative;
     left: 0;
     width: 100vw;
+    -webkit-transition: all $nav-speed;
+    -o-transition: all $nav-speed;
     transition: all $nav-speed;
+    -webkit-transition-timing-function: $nav-easing;
+    -o-transition-timing-function: $nav-easing;
     transition-timing-function: $nav-easing;
     min-height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    @media screen and (max-width: $mobile) {
+        padding-top: 100px;
+        min-height: calc(100vh - 100px);
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+    }
 }
+
 .nav-active {
     .page {
         left: $nav-width;
@@ -28,42 +51,6 @@
     }
 }
 
-
-
-
-.page-wrapper {
-    section {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    &.has-navigation {
-        section {
-            height: calc(100vh - 140px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    }
-}
-
-// .row {
-//     display: flex;
-//     flex-direction: row;
-//     @media screen and (max-width: $mobile) {
-//         flex-direction: column;
-//     }
-//     .column {
-//         flex: 1;
-//         margin: 0 20px 20px 20px;
-//         width: 50%;
-//         @media screen and (max-width: $mobile) {
-//             width: 100%;
-//         }
-//     }
-// }
-
 a {
     text-decoration: none;
 }
@@ -71,8 +58,11 @@ a {
 .hide {
     visibility: hidden;
     opacity: 0;
+    -webkit-transition: visibility 0s, opacity 0.5s;
+    -o-transition: visibility 0s, opacity 0.5s;
     transition: visibility 0s, opacity 0.5s;
 }
+
 .show {
     visibility: visible;
     opacity: 1;
@@ -86,14 +76,19 @@ a {
     padding: 8px 16px;
     cursor: pointer;
     margin-top: 16px;
+
     &:hover {
         color: $light-grey;
     }
+
     &.primary-btn {
         font-size: 14px;
         border: #ccc solid 1px;
+
         &:hover {
             color: inherit;
+            -webkit-transition: all 0.4s;
+            -o-transition: all 0.4s;
             transition: all 0.4s;
             background: rgba(0,0,0,0.04);
         }

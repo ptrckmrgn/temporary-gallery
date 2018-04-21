@@ -4,7 +4,8 @@ import Loader from '../components/Loader';
 
 const Welcome = () => {
     const style = {
-        minHeight: '300px'
+        minHeight: '300px',
+        padding: '0 24px'
     }
 
     return (
