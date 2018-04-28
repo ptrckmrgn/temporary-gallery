@@ -11,6 +11,7 @@ class Gallery extends Component {
 
         this.state = {
             introHidden: false,
+            isNavActive: false
         };
 
         this.isIntroHidden = this.isIntroHidden.bind(this);
@@ -30,22 +31,27 @@ class Gallery extends Component {
         this.props.setFirstLoad(false);
     }
 
+    openNav() {
+        console.log(true);
+        this.setState({isNavActive: true});
+    }
+
     render() {
         if (this.props.pieceData) {
             return (
                 <div id="gallery" className="nav-active">
                     <div id="overlay" className={this.props.isFirstLoad ? 'first-load' : ''}></div>
                     <Navigation
-                        isNavActive={false}
+                        isNavActive={this.state.isNavActive}
                         activePage={'gallery'}
                         pieceData={this.props.pieceData}
                     />
                     <div className="page">
-                        <Link id="piece" to="/purchase">
-                            {/* <div id="piece"> */}
+                        {/* <Link id="piece" to="/purchase"> */}
+                            <div onClick={this.openNav.bind(this)} id="piece">
                                 <SecureImage url={this.props.pieceURI} />
-                            {/* </div> */}
-                        </Link>
+                            </div>
+                        {/* </Link> */}
                     </div>
                 </div>
             );

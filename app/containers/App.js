@@ -40,8 +40,6 @@ class App extends Component {
         this.setFirstLoad = this.setFirstLoad.bind(this);
     }
 
-
-
     updateTimestamp() {
         const timestampRef = Firebase.firestore().collection('timestamp').doc('xw9Lf3HJpB9gYTZB5tKT');
 
@@ -85,6 +83,14 @@ class App extends Component {
                             this.setState({
                                 isLoading: false,
                                 pieceURI
+                            });
+                        });
+                    });
+                    const logoRef = Firebase.storage().refFromURL(pieceData.logo);
+                    logoRef.getDownloadURL().then(imageURL => {
+                        this.getDataURI(imageURL, pieceLogo => {
+                            this.setState({
+                                pieceLogo
                             });
                         });
                     });
@@ -163,7 +169,11 @@ class App extends Component {
                                     setFirstLoad={this.setFirstLoad}
                                 />)}
                             />
-                            <Route path='/' component={Open} />
+                            <Route path='/' render={props => (
+                                <Open {...props}
+                                    pieceLogo={this.state.pieceLogo}
+                                />)}
+                            />
                         </Switch>
                         {/* <Navigation /> */}
                     </div>

@@ -12,7 +12,7 @@ class Open extends Component {
         return (
             <div id="open" className="page">
                 <div style={style}>
-                    <h1>IAGO</h1>
+                    <img src={this.props.pieceLogo} alt="IAGO" />
                     <h3>We are open.</h3>
                     <p>We recommend you remove yourself from distractions.<br/>
                     Be comfortable, open, and present.</p>

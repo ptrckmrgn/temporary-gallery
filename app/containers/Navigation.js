@@ -35,6 +35,12 @@ class Navigation extends Component {
         }
     }
 
+    componentWillUpdate(nextProps) {
+        if (this.props.isNavActive !== nextProps.isNavActive) {
+            this.setState({isNavActive: nextProps.isNavActive});
+        }
+    }
+
     onClickToggle() {
         this.setState({isNavActive: !this.state.isNavActive});
 
